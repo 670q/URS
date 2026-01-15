@@ -15,8 +15,20 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "URS | Pharmacy Management System",
-  description: "Advanced Pharmacy Management System with Smart Integration",
+  title: "نظام URS | الحل الأمثل لإدارة الصيدليات",
+  description: "نظام سحابي متكامل يربط صيدليتك مع رصد والزكاة، ويدير المخزون والمبيعات بذكاء لزيادة أرباحك.",
+  openGraph: {
+    title: "نظام URS | الحل الأمثل لإدارة الصيدليات",
+    description: "نظام سحابي متكامل يربط صيدليتك مع رصد والزكاة، ويدير المخزون والمبيعات بذكاء لزيادة أرباحك.",
+    siteName: "URS System",
+    locale: "ar_SA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "نظام URS | إدارة صيدليات ذكية",
+    description: "اربط صيدليتك مع رصد والزكاة فوراً مع نظام URS.",
+  },
 };
 
 export default function RootLayout({
