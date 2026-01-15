@@ -19,18 +19,18 @@ export const Hero = () => {
                 {/* Text Content */}
                 <div className="text-right order-2 lg:order-1 space-y-6">
                     <motion.h1
-                        className="text-4xl md:text-6xl font-bold text-urs-navy leading-tight"
+                        className="text-4xl md:text-6xl font-bold text-urs-navy leading-tight flex flex-wrap justify-end gap-2"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                     >
-                        {text.split("").map((char, index) => (
+                        {text.split(" ").map((word, index) => (
                             <motion.span
                                 key={index}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: index * 0.05 }}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
                             >
-                                {char}
+                                {word}
                             </motion.span>
                         ))}
                     </motion.h1>
