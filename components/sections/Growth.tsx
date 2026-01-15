@@ -118,6 +118,34 @@ export const Growth = () => {
 
 const Counter = ({ value, suffix }: { value: number, suffix: string }) => {
     const [count, setCount] = useState(0);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        if (!inView) return;
+
+        let start = 0;
+        const end = value;
+        if (value > 15000) {
+            setCount(value);
+            return;
+        }
+
+        const duration = 2000;
+        const steps = 40;
+        const increment = Math.ceil(end / steps);
+
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+                setCount(end);
+                clearInterval(timer);
+            } else {
+                setCount(start);
+            }
+        }, duration / steps);
+
+        return () => clearInterval(timer);
+    }, [inView, value]);
 
     return (
         <motion.h4
@@ -125,21 +153,7 @@ const Counter = ({ value, suffix }: { value: number, suffix: string }) => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            onViewportEnter={() => {
-                let start = 0;
-                const end = value;
-                if (value > 15000) { setCount(value); return; } // Instant for big numbers in this demo
-
-                const timer = setInterval(() => {
-                    start += Math.ceil(end / 40);
-                    if (start >= end) {
-                        setCount(end);
-                        clearInterval(timer);
-                    } else {
-                        setCount(start);
-                    }
-                }, 30);
-            }}
+            onViewportEnter={() => setInView(true)}
         >
             {count.toLocaleString('en-US')}<span className="text-2xl text-blue-300 ml-1">{suffix}</span>
         </motion.h4>
